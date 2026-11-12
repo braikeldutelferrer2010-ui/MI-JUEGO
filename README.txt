@@ -1,15 +1,13 @@
-# MI JUEGO — proyecto Android
+MI JUEGO - PROYECTO ANDROID
 
-Este proyecto empaqueta el prototipo jugable HTML en una aplicación Android offline (WebView local).
+Este proyecto crea una app Android llamada Mi Juego. El juego funciona sin Internet porque todo está dentro de la aplicación.
 
-## Crear la APK desde un teléfono
-1. Crea un repositorio nuevo en GitHub.
-2. Descomprime este ZIP y sube el contenido de la carpeta `MI_JUEGO_Android` al repositorio (debe quedar `.github`, `app`, `build.gradle`, etc. en la raíz).
-3. Abre la pestaña **Actions** y ejecuta **Crear APK de MI JUEGO** (o espera a que termine el flujo automático).
-4. Abre la ejecución terminada, baja **MI-JUEGO-APK** y extrae `app-debug.apk`.
-5. Abre el APK en tu Android y permite instalar aplicaciones desde esa fuente si el teléfono lo solicita.
+Para generar el APK:
+1. Instala Android Studio en una computadora.
+2. Abre la carpeta Mi_Juego_Android en Android Studio.
+3. Espera a que Gradle termine de sincronizar.
+4. Selecciona Build > Build Bundle(s) / APK(s) > Build APK(s).
+5. El APK estará en app/build/outputs/apk/debug/app-debug.apk.
+6. Copia ese archivo al Redmi Note 11 y ábrelo para instalarlo. Si Android lo solicita, permite instalar apps desde esa fuente.
 
-## Estado y límites
-- Funciona sin Internet porque el juego se carga desde `assets/index.html`.
-- Está configurado para Android 6.0 o superior y orientación horizontal.
-- Esta APK contiene el prototipo 2D con perspectiva y controles táctiles, no un juego 3D completo tipo PES/FIFA. Los equipos actuales son genéricos (verdes y rojos); los escudos, plantillas y gráficos 3D reales requieren desarrollo adicional.
+Nota: Este es un prototipo jugable 2D con campo en perspectiva y controles táctiles, no un juego 3D completo al nivel de FIFA/PES. Para compilar el APK hace falta Android Studio y el SDK de Android.
