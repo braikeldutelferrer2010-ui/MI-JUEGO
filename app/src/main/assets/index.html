@@ -33,4 +33,67 @@ function kick(power){
   clearTimeout(window.__shotHint);
   window.__shotHint=setTimeout(()=>{hint.textContent='Mueve el joystick · Acércate al balón'},900);
 }
-function bind(id,fn){let el=document.getElementById(id);el.addEventListener('pointerdown',e=>{e.preventDefault();fn();el.set
+
+function bind(id,fn){
+  const el=document.getElementById(id);
+  el.addEventListener('pointerdown',e=>{
+    e.preventDefault();
+    fn();
+  });
+}
+
+bind('shoot',()=>kick(.75));
+bind('pass',()=>kick(.35));
+
+bind('switch',()=>{
+  state.active=(state.active+1)%5;
+});
+
+document.getElementById('sprint').addEventListener('pointerdown',()=>{
+  state.sprint=true;
+});
+document.getElementById('sprint').addEventListener('pointerup',()=>{
+  state.sprint=false;
+});
+document.getElementById('sprint').addEventListener('pointercancel',()=>{
+  state.sprint=false;
+});
+
+const stick=document.getElementById('stick');
+const knob=document.getElementById('knob');
+
+stick.addEventListener('pointerdown',e=>{
+  stick.setPointerCapture(e.pointerId);
+  moveStick(e);
+});
+stick.addEventListener('pointermove',e=>{
+  if(e.buttons)moveStick(e);
+});
+function moveStick(e){
+  const r=stick.getBoundingClientRect();
+  let x=e.clientX-(r.left+r.width/2);
+  let y=e.clientY-(r.top+r.height/2);
+  const max=39;
+  const d=Math.hypot(x,y)||1;
+  if(d>max){x=x/d*max;y=y/d*max;}
+  knob.style.transform=`translate(${x}px,${y}px)`;
+  state.dir.x=x/max;
+  state.dir.y=y/max;
+}
+function stopStick(){
+  state.dir.x=0;
+  state.dir.y=0;
+  knob.style.transform='translate(0,0)';
+}
+stick.addEventListener('pointerup',stopStick);
+stick.addEventListener('pointercancel',stopStick);
+
+document.getElementById('play').addEventListener('click',()=>{
+  document.getElementById('menu').classList.add('hidden');
+  state.live=true;
+});
+
+})();
+</script>
+</body>
+</html>
