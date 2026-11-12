@@ -3,7 +3,9 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-android {compileOptions {
+android {compileOptions {android {
+    namespace 'com.example.mi_juego'
+    compileSdk 35
     sourceCompatibility JavaVersion.VERSION_17
     targetCompatibility JavaVersion.VERSION_17
 }
